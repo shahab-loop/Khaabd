@@ -1,6 +1,9 @@
 import 'package:get/get.dart';
 import 'package:khaabd/core/bindings/bindings.dart';
 import 'package:khaabd/core/navigations/routes/routes.dart';
+import 'package:khaabd/screens/authentication/Login_screen/login_screen.dart';
+import 'package:khaabd/screens/authentication/authentication_screen/authentication_screen.dart';
+import 'package:khaabd/screens/authentication/forgot_screen/forgot_screen.dart';
 import 'package:khaabd/screens/onboarding/onboarding_screen.dart';
 import 'package:khaabd/screens/role_screen/role_screen.dart';
 import 'package:khaabd/screens/splash_screen/splash.dart';
@@ -21,6 +24,21 @@ class AppRoutes {
       name: Routes.roleScreen,
       binding: RoleScreenBinding(),
       page: () => RoleScreen(),
+    ),
+    GetPage(
+      name: Routes.loginScreen,
+      binding: LoginScreenBinding(),
+      page: () => LoginScreen(),
+    ),
+    GetPage(
+      name: Routes.forgotScreen,
+      binding: ForgotScreenBinding(),
+      page: () => ForgotScreen(),
+    ),
+    GetPage(
+      name: Routes.authenticationScreen,
+      binding: AuthenticationScreenBinding(),
+      page: () => AuthenticationScreen(),
     ),
   ];
 }

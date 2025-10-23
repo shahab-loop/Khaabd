@@ -27,7 +27,9 @@ class OnboardingScreen extends StatelessWidget {
             style: Theme.of(context).textTheme.headlineLarge,
           ),
           Gap(10.h),
-          SizedBox(width: 340.w,height: 72.h,
+          SizedBox(
+            width: 340.w,
+            height: 72.h,
             child: Text(
               'One platform that brings diners and restaurants together through deals, reviews, and promotions.',
               style: Theme.of(context).textTheme.headlineMedium,
@@ -35,8 +37,18 @@ class OnboardingScreen extends StatelessWidget {
             ),
           ),
           Gap(40.h),
-          CustomElevatedButton(text: 'GET STARTED', onPressed: () {    NavigationHelper.navigateTo('/RoleScreen');
-          }, backgroundColor: ThemeManager.secondaryColor, BorderColor: ThemeManager.secondaryColor, Svg: '',height: 56.h,width: 350.w,borderRadius: 50,)
+          CustomElevatedButton(
+            text: 'GET STARTED',
+            onPressed: () {
+              NavigationHelper.navigateTo('/RoleScreen');
+            },
+            backgroundColor: ThemeManager.secondaryColor,
+            BorderColor: ThemeManager.secondaryColor,
+            Svg: '',
+            height: 56.h,
+            width: 350.w,
+            borderRadius: 50,
+          ),
         ],
       ),
     );

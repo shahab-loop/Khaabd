@@ -45,15 +45,16 @@ class CustomElevatedButton extends StatelessWidget {
         ),
         onPressed: onPressed,
         child: Row(mainAxisAlignment: MainAxisAlignment.center,
-          children: [SvgPicture.asset(Svg),
-            Gap(10.w),
-            Text(
-              text,
-              style: TextStyle(
-                color: textColor,
-                fontSize: fontSize ?? 16,
-              ),
+          children: [Text(
+            text,
+            style: TextStyle(
+              color: textColor,
+              fontSize: fontSize ?? 16,
             ),
+          ),
+            Gap(10.w),
+            SvgPicture.asset(Svg),
+
           ],
         ),
       ),

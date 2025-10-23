@@ -110,6 +110,9 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/Star.svg
   String get star => 'assets/svgs/Star.svg';
 
+  /// File path: assets/svgs/arrow.svg
+  String get arrow => 'assets/svgs/arrow.svg';
+
   /// File path: assets/svgs/bell.svg
   String get bell => 'assets/svgs/bell.svg';
 
@@ -125,8 +128,17 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/home.svg
   String get home => 'assets/svgs/home.svg';
 
+  /// File path: assets/svgs/lock.svg
+  String get lock => 'assets/svgs/lock.svg';
+
+  /// File path: assets/svgs/scan.svg
+  String get scan => 'assets/svgs/scan.svg';
+
   /// File path: assets/svgs/search.svg
   String get search => 'assets/svgs/search.svg';
+
+  /// File path: assets/svgs/sms.svg
+  String get sms => 'assets/svgs/sms.svg';
 
   /// File path: assets/svgs/user.svg
   String get user => 'assets/svgs/user.svg';
@@ -135,12 +147,16 @@ class $AssetsSvgsGen {
   List<String> get values => [
     filter,
     star,
+    arrow,
     bell,
     cross,
     eye,
     hide,
     home,
+    lock,
+    scan,
     search,
+    sms,
     user,
   ];
 }

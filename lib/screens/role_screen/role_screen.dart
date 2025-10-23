@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/get_instance.dart';
 import 'package:khaabd/core/generated/assets.gen.dart';
+import 'package:khaabd/core/navigations/navigation_helper/navigation_helper.dart';
 import 'package:khaabd/core/res/theme/theme_manager/theme_manager.dart';
 import 'package:khaabd/core/utils/size_utils.dart';
 import 'package:khaabd/screens/role_screen/controller/role_controller.dart';
@@ -32,7 +31,6 @@ class RoleScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Food Lover Card
                   Obx(() => GestureDetector(
                     onTap: () => controller.selectFoodLover(),
                     child: Container(
@@ -73,7 +71,6 @@ class RoleScreen extends StatelessWidget {
 
                   Gap(16.w),
 
-                  // Restaurant Owner Card
                   Obx(() => GestureDetector(
                     onTap: () => controller.selectRestaurantOwner(),
                     child: Container(
@@ -127,11 +124,13 @@ class RoleScreen extends StatelessWidget {
               ),
               Gap(40.h),
               CustomElevatedButton(
-                text: 'Next >',
-                onPressed: () {},
+                text: 'Next ',
+                onPressed: () {
+                  NavigationHelper.navigateTo('/LoginScreen');
+                },
                 backgroundColor: ThemeManager.secondaryColor,
                 BorderColor: ThemeManager.secondaryColor,
-                Svg: '',
+                Svg: Assets.svgs.arrow,
                 borderRadius: 50,
                 height: 56.h,
                 width: 200.w,
