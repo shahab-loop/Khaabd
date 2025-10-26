@@ -7,19 +7,18 @@ import 'package:khaabd/core/generated/assets.gen.dart';
 import 'package:khaabd/core/navigations/navigation_helper/navigation_helper.dart';
 import 'package:khaabd/core/res/theme/theme_manager/theme_manager.dart';
 import 'package:khaabd/core/utils/size_utils.dart';
-import 'package:khaabd/screens/authentication/forgot_screen/controller/forgot_controller.dart';
+import 'package:khaabd/screens/auth/newpassword_screen/controller/newpassword_controller.dart';
 import 'package:khaabd/widgets/base_scaffold.dart';
 import 'package:khaabd/widgets/customised_widget.dart';
 import 'package:khaabd/widgets/textfieldwithsvg.dart';
-import 'package:khaabd/widgets/textformfield.dart';
 
-class ForgotScreen extends StatelessWidget {
-  static const String routeName = '/ForgotScreen';
-  const ForgotScreen({super.key});
+class NewPasswordScreen extends StatelessWidget {
+  static const String routeName = '/NewPasswordScreen';
+  const NewPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final ForgotController controller = Get.find<ForgotController>();
+    final NewPasswordController controller = Get.find<NewPasswordController>();
 
     return BaseScaffold(
       body: Stack(
@@ -43,9 +42,13 @@ class ForgotScreen extends StatelessWidget {
                     ),
                   ),
                   Gap(4.w),
-                  Text(
-                    'Forgot Password',
-                    style: Theme.of(context).textTheme.headlineLarge,
+                  Row(
+                    children: [
+                      Text(
+                        'Set a \nNew Password',
+                        style: Theme.of(context).textTheme.headlineLarge,
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -57,7 +60,7 @@ class ForgotScreen extends StatelessWidget {
             left: 0,
             right: 0,
             child: Container(
-              height: 340.h,
+              height: 425.h,
               width: double.infinity,
               decoration: BoxDecoration(
                 color: ThemeManager.white,
@@ -72,11 +75,11 @@ class ForgotScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Forgot Password',
+                      'Set a New Password',
                       style: Theme.of(context).textTheme.labelLarge,
                     ),
                     Text(
-                      'A verification code will be sent to your email to reset your password.',
+                      'Please set a new password to secure your Work Mate account.',
                       style: Theme.of(context).textTheme.displaySmall,
                       textAlign: TextAlign.center,
                     ),
@@ -84,20 +87,38 @@ class ForgotScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          'Email',
+                          'Password',
                           style: Theme.of(context).textTheme.labelMedium,
                         ),
                       ],
                     ),
+                    Gap(4.h),
                     TextFormFieldSvgs(
-                      hintText: 'My email',
-                      prefixSvg: Assets.svgs.sms,
+                      hintText: 'Input Password',
+                      prefixSvg: Assets.svgs.scan,
+                      suffixSvg: Assets.svgs.eye,
+                    ),
+                    Gap(24.h),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Confirm Password',
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ),
+                      ],
+                    ),
+                    Gap(4.h),
+                    TextFormFieldSvgs(
+                      hintText: 'Re Enter Your Password',
+                      prefixSvg: Assets.svgs.scan,
+                      suffixSvg: Assets.svgs.hide,
                     ),
                     Gap(39.h),
                     CustomElevatedButton(
-                      text: 'Send Verification Code',
+                      text: 'Submit',height: 56.h,
                       onPressed: () {
-                        NavigationHelper.navigateTo('/AuthenticationScreen');
+                        NavigationHelper.navigateTo('/LoginScreen');
                       },
                       backgroundColor: ThemeManager.secondaryColor,
                       BorderColor: ThemeManager.secondaryColor,
@@ -109,7 +130,7 @@ class ForgotScreen extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(bottom:300 ,left:135 ,
+          Positioned(bottom:380 ,left:135 ,
             child: Container(
               height: 100,
               width: 100,

@@ -5,7 +5,7 @@ import 'package:get/get_instance/get_instance.dart';
 import 'package:khaabd/core/navigations/navigation_helper/navigation_helper.dart';
 import 'package:khaabd/core/res/theme/theme_manager/theme_manager.dart';
 import 'package:khaabd/core/utils/size_utils.dart';
-import 'package:khaabd/screens/authentication/Login_screen/controller/login_controller.dart';
+import 'package:khaabd/screens/auth/Login_screen/controller/login_controller.dart';
 import 'package:khaabd/widgets/base_scaffold.dart';
 import 'package:khaabd/widgets/customised_widget.dart';
 import 'package:khaabd/widgets/textformfield.dart';
@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 16,top: 40),
+                  padding: const EdgeInsets.only(left: 16),
                   child: GestureDetector(
                     onTap: () {
                       NavigationHelper.goBack();
@@ -36,13 +36,10 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Gap(3.w),
-                Padding(
-                  padding: const EdgeInsets.only(top:40),
-                  child: Text(
-                    'Welcome to \nLogin',
-                    style: Theme.of(context).textTheme.headlineLarge,
-                  ),
+                Gap(4.w),
+                Text(
+                  'Welcome to \nLogin',
+                  style: Theme.of(context).textTheme.headlineLarge,
                 ),
               ],
             ),
@@ -95,7 +92,7 @@ class LoginScreen extends StatelessWidget {
                     Row(mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   GestureDetector(onTap: () {
-
+NavigationHelper.navigateTo('/RegisterScreen');
                   },child: Text('Sign Up',style: Theme.of(context).textTheme.labelMedium,)),
 
                 ],

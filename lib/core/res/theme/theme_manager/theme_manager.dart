@@ -50,7 +50,7 @@ class ThemeManager {
       ),
       labelSmall: GoogleFonts.poppins(
         color: darkGrey,
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: FontWeight.w400,
       ),
       displaySmall: GoogleFonts.poppins(

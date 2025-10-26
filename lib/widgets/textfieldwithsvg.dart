@@ -30,7 +30,10 @@ class TextFormFieldSvgs extends StatelessWidget {
         ),
         decoration: InputDecoration(
           hintText: hintText,
-          hintStyle: TextStyle(color: Colors.grey[400]),
+          hintStyle: TextStyle(color: Colors.grey[400],fontSize: 14.px),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey),
+          ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.grey),
           ),
