@@ -6,8 +6,12 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 class TextFormFieldSvgs extends StatelessWidget {
   final String hintText;
   final bool obsecure;
-  final String? prefixSvg; // SVG icon before hint
-  final String? suffixSvg; // SVG icon after hint
+  final String? prefixSvg;
+  final String? suffixSvg;
+  final double? height;
+  final double? width;
+  final Color? prefixColor; // optional custom prefix color
+  final Color? suffixColor; // optional custom suffix color
 
   const TextFormFieldSvgs({
     super.key,
@@ -15,13 +19,17 @@ class TextFormFieldSvgs extends StatelessWidget {
     this.obsecure = false,
     this.prefixSvg,
     this.suffixSvg,
+    this.height,
+    this.width,
+    this.prefixColor,
+    this.suffixColor,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 48.px,
-      width: 327.px,
+      height: height ?? 48.px,
+      width: width ?? 327.px,
       child: TextFormField(
         obscureText: obsecure,
         style: TextStyle(
@@ -30,15 +38,21 @@ class TextFormFieldSvgs extends StatelessWidget {
         ),
         decoration: InputDecoration(
           hintText: hintText,
-          hintStyle: TextStyle(color: Colors.grey[400],fontSize: 14.px),
-          border: OutlineInputBorder(
+          hintStyle: TextStyle(
+            color: Colors.grey[400],
+            fontSize: 14.px,
+          ),
+          border: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.grey),
           ),
-          enabledBorder: OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.grey),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: ThemeManager.darkGrey, width: 1),
+            borderSide: BorderSide(
+              color: ThemeManager.darkGrey!,
+              width: 1,
+            ),
           ),
           prefixIcon: prefixSvg != null
               ? Padding(
@@ -46,7 +60,7 @@ class TextFormFieldSvgs extends StatelessWidget {
             child: SvgPicture.asset(
               prefixSvg!,
               colorFilter: ColorFilter.mode(
-                ThemeManager.secondaryColor!,
+                prefixColor ?? ThemeManager.secondaryColor!,
                 BlendMode.srcIn,
               ),
               width: 20,
@@ -60,7 +74,7 @@ class TextFormFieldSvgs extends StatelessWidget {
             child: SvgPicture.asset(
               suffixSvg!,
               colorFilter: ColorFilter.mode(
-                ThemeManager.secondaryColor!,
+                suffixColor ?? ThemeManager.secondaryColor!,
                 BlendMode.srcIn,
               ),
               width: 20,

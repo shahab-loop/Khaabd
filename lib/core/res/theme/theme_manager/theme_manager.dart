@@ -11,7 +11,6 @@ class ThemeManager {
   static Color black = Color(0xff0C0D0D);
   static Color darkGrey = Color(0xff9B9C9C);
 
-
   static final ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
 
@@ -49,27 +48,40 @@ class ThemeManager {
         fontWeight: FontWeight.w700,
       ),
       labelSmall: GoogleFonts.poppins(
-        color: darkGrey,
+        color: ThemeManager.secondaryColor,
         fontSize: 12,
         fontWeight: FontWeight.w400,
       ),
       displaySmall: GoogleFonts.poppins(
-        color: darkGrey,
+        color: ThemeManager.darkGrey,
         fontSize: 12,
         fontWeight: FontWeight.w400,
       ),
       labelMedium: GoogleFonts.poppins(
-        color: Colors.black,
+        color: ThemeManager.black,
         fontSize: 14,
         fontWeight: FontWeight.w700,
       ),
       labelLarge: GoogleFonts.poppins(
-        color: Colors.black,
+        color: ThemeManager.black,
         fontSize: 20,
         fontWeight: FontWeight.w600,
       ),
-
+      titleLarge: GoogleFonts.poppins(
+        color: ThemeManager.white,
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+      ),
+      titleMedium: GoogleFonts.poppins(
+        color: ThemeManager.black,
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+      ),
+      titleSmall: GoogleFonts.poppins(
+        color: ThemeManager.secondaryColor,
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+      ),
     ),
-
   );
 }

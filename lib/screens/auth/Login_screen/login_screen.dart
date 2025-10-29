@@ -81,7 +81,8 @@ class LoginScreen extends StatelessWidget {
                       ],
                     ),
                     Gap(80.h),
-                    CustomElevatedButton(text: 'Log In', onPressed: () {  }, backgroundColor: ThemeManager.secondaryColor, BorderColor: ThemeManager.secondaryColor, Svg: '',height:56.h ,width:342.w ,borderRadius:50 ,fontSize:20 ,),
+                    CustomElevatedButton(text: 'Log In', onPressed: () {NavigationHelper.navigateTo('/HomeScreen');
+                    }, backgroundColor: ThemeManager.secondaryColor, BorderColor: ThemeManager.secondaryColor, Svg: '',height:56.h ,width:342.w ,borderRadius:50 ,fontSize:20 ,),
                             Gap(100.h),
                     Row(mainAxisAlignment: MainAxisAlignment.end,
                       children: [

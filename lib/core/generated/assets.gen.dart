@@ -63,6 +63,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/pizza.png
   AssetGenImage get pizza => const AssetGenImage('assets/images/pizza.png');
 
+  /// File path: assets/images/profile.png
+  AssetGenImage get profile => const AssetGenImage('assets/images/profile.png');
+
   /// File path: assets/images/security-safe.png
   AssetGenImage get securitySafe =>
       const AssetGenImage('assets/images/security-safe.png');
@@ -94,6 +97,7 @@ class $AssetsImagesGen {
     onboarding,
     pasta,
     pizza,
+    profile,
     securitySafe,
     tea,
     usersite,

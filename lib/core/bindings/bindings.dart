@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
 import 'package:khaabd/screens/auth/Login_screen/controller/login_controller.dart';
+import 'package:khaabd/screens/auth/accountauthentication_screen/controller/accountauthentication_controller.dart';
 import 'package:khaabd/screens/auth/authentication_screen/controller/authentication_controller.dart';
 import 'package:khaabd/screens/auth/forgot_screen/controller/forgot_controller.dart';
 import 'package:khaabd/screens/auth/newpassword_screen/controller/newpassword_controller.dart';
 import 'package:khaabd/screens/auth/register_screen/controller/register_controller.dart';
+import 'package:khaabd/screens/home_screen/controller/homeScreen_controller.dart';
 import 'package:khaabd/screens/onboarding/controller/onboarding_controller.dart';
 import 'package:khaabd/screens/role_screen/controller/role_controller.dart';
 import 'package:khaabd/screens/splash_screen/controller/spalsh_controller.dart';
@@ -55,5 +57,17 @@ class RegisterScreenBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => RegisterController());
+  }
+}
+class AccountAuthenticationScreenBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => AccountAuthenticationController());
+  }
+}
+class HomeScreenBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => HomeScreenController());
   }
 }
