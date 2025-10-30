@@ -9,6 +9,7 @@ import 'package:khaabd/screens/auth/newpassword_screen/newpassword_screen.dart';
 import 'package:khaabd/screens/auth/register_screen/register_screen.dart';
 import 'package:khaabd/screens/home_screen/home_screen.dart';
 import 'package:khaabd/screens/onboarding/onboarding_screen.dart';
+import 'package:khaabd/screens/profile/profile_screen.dart';
 import 'package:khaabd/screens/role_screen/role_screen.dart';
 import 'package:khaabd/screens/splash_screen/splash.dart';
 
@@ -63,6 +64,11 @@ class AppRoutes {
       name: Routes.homeScreen,
       binding: HomeScreenBinding(),
       page: () => HomeScreen(),
+    ),
+    GetPage(
+      name: Routes.profileScreen,
+      binding: ProfileScreenBinding(),
+      page: () => ProfileScreen(),
     ),
 
   ];

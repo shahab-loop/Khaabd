@@ -49,7 +49,7 @@ class _SpecialOffersCarouselState extends State<SpecialOffersCarousel> {
             },
           ),
         ),
-        Gap(1.h),
+        Gap(8.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(banners.length, (index) {

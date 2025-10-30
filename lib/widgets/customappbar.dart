@@ -32,7 +32,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             // TODO: Navigate to profile screen
           },
           icon: const CircleAvatar(
-            backgroundImage: AssetImage('assets/images/profile.jpg'),
+            backgroundImage: AssetImage('assets/images/controller.jpg'),
             radius: 15, // Adjust size
           ),
         ),

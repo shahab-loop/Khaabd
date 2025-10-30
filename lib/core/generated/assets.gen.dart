@@ -17,6 +17,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/Ellipse.png
   AssetGenImage get ellipse => const AssetGenImage('assets/images/Ellipse.png');
 
+  /// File path: assets/images/biryani.png
+  AssetGenImage get biryani => const AssetGenImage('assets/images/biryani.png');
+
   /// File path: assets/images/broast.png
   AssetGenImage get broast => const AssetGenImage('assets/images/broast.png');
 
@@ -39,6 +42,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/delicious.png
   AssetGenImage get delicious =>
       const AssetGenImage('assets/images/delicious.png');
+
+  /// File path: assets/images/hotburger.png
+  AssetGenImage get hotburger =>
+      const AssetGenImage('assets/images/hotburger.png');
 
   /// File path: assets/images/kabab.png
   AssetGenImage get kabab => const AssetGenImage('assets/images/kabab.png');
@@ -83,6 +90,7 @@ class $AssetsImagesGen {
   /// List of all assets
   List<AssetGenImage> get values => [
     ellipse,
+    biryani,
     broast,
     burger,
     cheesious,
@@ -90,6 +98,7 @@ class $AssetsImagesGen {
     chilli,
     deal,
     delicious,
+    hotburger,
     kabab,
     khaabd,
     noprofile,

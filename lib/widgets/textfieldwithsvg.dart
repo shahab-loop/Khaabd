@@ -10,9 +10,8 @@ class TextFormFieldSvgs extends StatelessWidget {
   final String? suffixSvg;
   final double? height;
   final double? width;
-  final Color? prefixColor; // optional custom prefix color
-  final Color? suffixColor; // optional custom suffix color
-
+  final Color? prefixColor;
+  final Color? suffixColor;
   const TextFormFieldSvgs({
     super.key,
     required this.hintText,
@@ -27,21 +26,19 @@ class TextFormFieldSvgs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      decoration: BoxDecoration(
+        color: ThemeManager.white,
+        borderRadius: BorderRadius.circular(4),
+      ),
       height: height ?? 48.px,
       width: width ?? 327.px,
       child: TextFormField(
         obscureText: obsecure,
-        style: TextStyle(
-          color: Colors.grey[800],
-          fontSize: 16.px,
-        ),
+        style: TextStyle(color: Colors.grey[800], fontSize: 16.px),
         decoration: InputDecoration(
           hintText: hintText,
-          hintStyle: TextStyle(
-            color: Colors.grey[400],
-            fontSize: 14.px,
-          ),
+          hintStyle: TextStyle(color: Colors.grey[400], fontSize: 12.px),
           border: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.grey),
           ),
@@ -49,38 +46,35 @@ class TextFormFieldSvgs extends StatelessWidget {
             borderSide: BorderSide(color: Colors.grey),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: ThemeManager.darkGrey!,
-              width: 1,
-            ),
+            borderSide: BorderSide(color: ThemeManager.darkGrey!, width: 1),
           ),
           prefixIcon: prefixSvg != null
               ? Padding(
-            padding: const EdgeInsets.all(12),
-            child: SvgPicture.asset(
-              prefixSvg!,
-              colorFilter: ColorFilter.mode(
-                prefixColor ?? ThemeManager.secondaryColor!,
-                BlendMode.srcIn,
-              ),
-              width: 20,
-              height: 20,
-            ),
-          )
+                  padding: const EdgeInsets.all(12),
+                  child: SvgPicture.asset(
+                    prefixSvg!,
+                    colorFilter: ColorFilter.mode(
+                      prefixColor ?? ThemeManager.secondaryColor!,
+                      BlendMode.srcIn,
+                    ),
+                    width: 20,
+                    height: 20,
+                  ),
+                )
               : null,
           suffixIcon: suffixSvg != null
               ? Padding(
-            padding: const EdgeInsets.all(12),
-            child: SvgPicture.asset(
-              suffixSvg!,
-              colorFilter: ColorFilter.mode(
-                suffixColor ?? ThemeManager.secondaryColor!,
-                BlendMode.srcIn,
-              ),
-              width: 20,
-              height: 20,
-            ),
-          )
+                  padding: const EdgeInsets.all(12),
+                  child: SvgPicture.asset(
+                    suffixSvg!,
+                    colorFilter: ColorFilter.mode(
+                      suffixColor ?? ThemeManager.secondaryColor!,
+                      BlendMode.srcIn,
+                    ),
+                    width: 20,
+                    height: 20,
+                  ),
+                )
               : null,
         ),
       ),
