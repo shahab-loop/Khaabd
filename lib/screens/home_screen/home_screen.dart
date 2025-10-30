@@ -80,12 +80,16 @@ class HomeScreen extends StatelessWidget {
 
                   Row(
                     children: [
-                      TextFormFieldSvgs(
-                        hintText: 'Search for food or restaurant...',
-                        prefixSvg: Assets.svgs.search,
-                        prefixColor: ThemeManager.darkGrey,
-                        width: 289.5.w,
-                        height: 40.h,
+                      GestureDetector(onTap: () {
+                        FocusScope.of(context).unfocus();
+                      },
+                        child: TextFormFieldSvgs(
+                          hintText: 'Search for food or restaurant...',
+                          prefixSvg: Assets.svgs.search,
+                          prefixColor: ThemeManager.darkGrey,
+                          width: 289.5.w,
+                          height: 40.h,
+                        ),
                       ),
                       Gap(12.w),
                       GestureDetector(
@@ -314,18 +318,22 @@ void showAppBottomSheet(BuildContext context, HomeScreenController controller) {
                 children: [
                   Text('Any Specific Tags',style: Theme.of(context).textTheme.titleMedium,),
                    Gap(4),
-                  TextFormField(
-                    style: TextStyle(color: ThemeManager.darkGrey),
-                    decoration: InputDecoration(
-                      hintText:'#Food, #Pizza,',
-                      fillColor: ThemeManager.primaryColor,
-                      hintStyle: Theme.of(context).textTheme.labelSmall,
-                      border:InputBorder.none,
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4),borderSide: BorderSide(color: ThemeManager.secondaryColor)
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4),borderSide: BorderSide(color: ThemeManager.secondaryColor)
+                  GestureDetector(onTap: () {
+                    FocusScope.of(context).unfocus();
+                  },
+                    child: TextFormField(
+                      style: TextStyle(color: ThemeManager.darkGrey),
+                      decoration: InputDecoration(
+                        hintText:'#Food, #Pizza,',
+                        fillColor: ThemeManager.primaryColor,
+                        hintStyle: Theme.of(context).textTheme.labelSmall,
+                        border:InputBorder.none,
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(4),borderSide: BorderSide(color: ThemeManager.secondaryColor)
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(4),borderSide: BorderSide(color: ThemeManager.secondaryColor)
+                        ),
                       ),
                     ),
                   ),
