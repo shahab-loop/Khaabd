@@ -45,7 +45,7 @@ class ThemeManager {
       bodyMedium: GoogleFonts.poppins(
         color: white,
         fontSize: 14,
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w500,
       ),
       labelSmall: GoogleFonts.poppins(
         color: ThemeManager.secondaryColor,
@@ -81,6 +81,11 @@ class ThemeManager {
         color: ThemeManager.secondaryColor,
         fontSize: 16,
         fontWeight: FontWeight.w600,
+      ),
+      displayMedium: GoogleFonts.poppins(
+        color: ThemeManager.Grey,
+        fontSize: 12,
+        fontWeight: FontWeight.w200,
       ),
     ),
   );

@@ -58,7 +58,9 @@ class HomeScreen extends StatelessWidget {
                       ),
                       Gap(8.w),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          NavigationHelper.navigateTo('/NotificationScreen');
+                        },
                         child: Container(
                           height: 38.h,
                           width: 38.w,

@@ -57,6 +57,10 @@ class $AssetsImagesGen {
   AssetGenImage get noprofile =>
       const AssetGenImage('assets/images/noprofile.png');
 
+  /// File path: assets/images/notificationpic.png
+  AssetGenImage get notificationpic =>
+      const AssetGenImage('assets/images/notificationpic.png');
+
   /// File path: assets/images/offer.png
   AssetGenImage get offer => const AssetGenImage('assets/images/offer.png');
 
@@ -102,6 +106,7 @@ class $AssetsImagesGen {
     kabab,
     khaabd,
     noprofile,
+    notificationpic,
     offer,
     onboarding,
     pasta,
@@ -128,6 +133,9 @@ class $AssetsSvgsGen {
 
   /// File path: assets/svgs/bell.svg
   String get bell => 'assets/svgs/bell.svg';
+
+  /// File path: assets/svgs/camera.svg
+  String get camera => 'assets/svgs/camera.svg';
 
   /// File path: assets/svgs/cross.svg
   String get cross => 'assets/svgs/cross.svg';
@@ -162,6 +170,7 @@ class $AssetsSvgsGen {
     star,
     arrow,
     bell,
+    camera,
     cross,
     eye,
     hide,

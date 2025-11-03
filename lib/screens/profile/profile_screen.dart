@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:khaabd/core/generated/assets.gen.dart';
+import 'package:khaabd/core/navigations/navigation_helper/navigation_helper.dart';
 import 'package:khaabd/core/res/theme/theme_manager/theme_manager.dart';
 import 'package:khaabd/core/utils/size_utils.dart';
 import 'package:khaabd/screens/profile/controller/profile_controller.dart';
@@ -39,7 +41,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Gap(115.w),
                   Text(
                     'Profile',
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ],
               ),
@@ -102,7 +104,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      NavigationHelper.navigateTo('/ChangePassword');
+                    },
                     child: Icon(Icons.arrow_forward_ios),
                   ),
                 ],
@@ -154,92 +158,97 @@ void showImageDialog(BuildContext context, String imagePath) {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Container(
         padding: const EdgeInsets.all(16),
-        height: 230,
-        width: 300,
+        height: 250,
+        // width: 350,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: ThemeManager.white,
         ),
-        child: Column(
+        child: Stack(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.asset(
-                Assets.images.noprofile.path,
-                height: 80.h,
-                width: 80.w,
+            Positioned(top: 23,left: 85,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.asset(
+                  Assets.images.noprofile.path,
+                  height: 80.h,
+                  width: 80.w,
+                ),
               ),
             ),
-            Gap(16.h),
-            SizedBox(
-              width: 252.w,
-              height: 32.h,
-              child: TextFormField(
-                style: TextStyle(color: ThemeManager.darkGrey),
-                textAlign: TextAlign.center,
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
-                  hintText: 'Name',
-                  hintStyle: Theme.of(context).textTheme.titleMedium,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(32),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(32),
-                    borderSide: BorderSide(color: ThemeManager.primaryColor),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(32),
-                    borderSide: BorderSide(color: ThemeManager.primaryColor),
+            Positioned(top: 125,left:3 ,
+              child: SizedBox(
+                width: 252.w,
+                height: 32.h,
+                child: TextFormField(
+                  style: TextStyle(color: ThemeManager.darkGrey),
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
+                    hintText: 'Name',
+                    hintStyle: Theme.of(context).textTheme.titleMedium,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(32),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(32),
+                      borderSide: BorderSide(color: ThemeManager.primaryColor),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(32),
+                      borderSide: BorderSide(color: ThemeManager.primaryColor),
+                    ),
                   ),
                 ),
               ),
             ),
-            Gap(32.h),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                  Navigator.pop(context);
+            Positioned(top:180 ,left:3 ,
+              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                    Navigator.pop(context);
+                      },
+                    child: Container(
+                      height: 32,
+                      width: 116,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: ThemeManager.darkGrey,
+                      ),
+                      child: Center(
+                        child: Text(
+                          'cancel',
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 12,),
+                  GestureDetector(
+                    onTap: () {
+                      showImageDialog(context, Assets.images.noprofile.path);
                     },
-                  child: Container(
-                    height: 32,
-                    width: 120,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: ThemeManager.darkGrey,
-                    ),
-                    child: Center(
-                      child: Text(
-                        'cancel',
-                        style: Theme.of(context).textTheme.titleLarge,
+                    child: Container(
+                      height: 32,
+                      width: 116,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: ThemeManager.secondaryColor,
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Save',
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    showImageDialog(context, Assets.images.noprofile.path);
-                  },
-                  child: Container(
-                    height: 32,
-                    width: 120,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: ThemeManager.secondaryColor,
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Save',
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                    ),
-                  ),
-                ),
 
-              ],
+                ],
+              ),
             ),
-
+Positioned(top:68 ,left:150 ,child: SvgPicture.asset(Assets.svgs.camera,color: ThemeManager.secondaryColor,height:24.h ,width:24.w ,))
           ],
         ),
       ),

@@ -2,10 +2,12 @@ import 'package:get/get.dart';
 import 'package:khaabd/screens/auth/Login_screen/controller/login_controller.dart';
 import 'package:khaabd/screens/auth/accountauthentication_screen/controller/accountauthentication_controller.dart';
 import 'package:khaabd/screens/auth/authentication_screen/controller/authentication_controller.dart';
+import 'package:khaabd/screens/auth/change_password/controller/changepassword_controller.dart';
 import 'package:khaabd/screens/auth/forgot_screen/controller/forgot_controller.dart';
 import 'package:khaabd/screens/auth/newpassword_screen/controller/newpassword_controller.dart';
 import 'package:khaabd/screens/auth/register_screen/controller/register_controller.dart';
 import 'package:khaabd/screens/home_screen/controller/homeScreen_controller.dart';
+import 'package:khaabd/screens/notification_screen/controller/notification_controller.dart';
 import 'package:khaabd/screens/onboarding/controller/onboarding_controller.dart';
 import 'package:khaabd/screens/profile/controller/profile_controller.dart';
 import 'package:khaabd/screens/role_screen/controller/role_controller.dart';
@@ -76,5 +78,17 @@ class ProfileScreenBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => ProfileController());
+  }
+}
+class ChangePasswordBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => ChangePasswordController());
+  }
+}
+class NotificationScreenBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => NotificationScreenController());
   }
 }

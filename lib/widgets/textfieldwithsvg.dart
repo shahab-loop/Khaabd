@@ -12,6 +12,8 @@ class TextFormFieldSvgs extends StatelessWidget {
   final double? width;
   final Color? prefixColor;
   final Color? suffixColor;
+  final Color? hintColor;
+
   const TextFormFieldSvgs({
     super.key,
     required this.hintText,
@@ -22,6 +24,7 @@ class TextFormFieldSvgs extends StatelessWidget {
     this.width,
     this.prefixColor,
     this.suffixColor,
+    this.hintColor, // <-- added
   });
 
   @override
@@ -38,7 +41,10 @@ class TextFormFieldSvgs extends StatelessWidget {
         style: TextStyle(color: Colors.grey[800], fontSize: 16.px),
         decoration: InputDecoration(
           hintText: hintText,
-          hintStyle: TextStyle(color: Colors.grey[400], fontSize: 12.px),
+          hintStyle: TextStyle(
+            color: hintColor ?? Colors.grey[400],
+            fontSize: 12.px,
+          ),
           border: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.grey),
           ),
@@ -50,31 +56,31 @@ class TextFormFieldSvgs extends StatelessWidget {
           ),
           prefixIcon: prefixSvg != null
               ? Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: SvgPicture.asset(
-                    prefixSvg!,
-                    colorFilter: ColorFilter.mode(
-                      prefixColor ?? ThemeManager.secondaryColor!,
-                      BlendMode.srcIn,
-                    ),
-                    width: 20,
-                    height: 20,
-                  ),
-                )
+            padding: const EdgeInsets.all(12),
+            child: SvgPicture.asset(
+              prefixSvg!,
+              colorFilter: ColorFilter.mode(
+                prefixColor ?? ThemeManager.secondaryColor!,
+                BlendMode.srcIn,
+              ),
+              width: 20,
+              height: 20,
+            ),
+          )
               : null,
           suffixIcon: suffixSvg != null
               ? Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: SvgPicture.asset(
-                    suffixSvg!,
-                    colorFilter: ColorFilter.mode(
-                      suffixColor ?? ThemeManager.secondaryColor!,
-                      BlendMode.srcIn,
-                    ),
-                    width: 20,
-                    height: 20,
-                  ),
-                )
+            padding: const EdgeInsets.all(12),
+            child: SvgPicture.asset(
+              suffixSvg!,
+              colorFilter: ColorFilter.mode(
+                suffixColor ?? ThemeManager.secondaryColor!,
+                BlendMode.srcIn,
+              ),
+              width: 20,
+              height: 20,
+            ),
+          )
               : null,
         ),
       ),
