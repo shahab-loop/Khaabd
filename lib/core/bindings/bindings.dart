@@ -6,7 +6,9 @@ import 'package:khaabd/screens/auth/change_password/controller/changepassword_co
 import 'package:khaabd/screens/auth/forgot_screen/controller/forgot_controller.dart';
 import 'package:khaabd/screens/auth/newpassword_screen/controller/newpassword_controller.dart';
 import 'package:khaabd/screens/auth/register_screen/controller/register_controller.dart';
+import 'package:khaabd/screens/deals_screen/controller/deals_controller.dart';
 import 'package:khaabd/screens/home_screen/controller/homeScreen_controller.dart';
+import 'package:khaabd/screens/item-description/controller/description_controller.dart';
 import 'package:khaabd/screens/notification_screen/controller/notification_controller.dart';
 import 'package:khaabd/screens/onboarding/controller/onboarding_controller.dart';
 import 'package:khaabd/screens/profile/controller/profile_controller.dart';
@@ -90,5 +92,17 @@ class NotificationScreenBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => NotificationScreenController());
+  }
+}
+class DealsScreenBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => DealsController());
+  }
+}
+class ItemDescriptionBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => DescriptionController());
   }
 }

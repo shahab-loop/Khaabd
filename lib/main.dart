@@ -16,13 +16,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Sizer(
       builder: (context, orientation, deviceType) {
-        return GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'khaabd',
-          scrollBehavior: MyBehavior(),
-          darkTheme: ThemeManager.darkTheme,
-          locale: const Locale('en', 'US'),
-          getPages: AppRoutes.pages,
+        return GestureDetector(onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+          child: GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'khaabd',
+            scrollBehavior: MyBehavior(),
+            darkTheme: ThemeManager.darkTheme,
+            locale: const Locale('en', 'US'),
+            getPages: AppRoutes.pages,
+          ),
         );
       },
     );

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:khaabd/core/res/theme/theme_manager/theme_manager.dart';
 import 'package:khaabd/core/utils/size_utils.dart';
 import 'package:khaabd/screens/notification_screen/controller/notification_controller.dart';
+import 'package:khaabd/widgets/notification_widget.dart';
 
 
 class NotificationScreen extends StatelessWidget {
@@ -38,6 +39,15 @@ class NotificationScreen extends StatelessWidget {
                 ],
               ),
               Gap(40.h),
+              Column(
+                children: [
+                  NotificationWidget(Time: '11:41 PM',),
+                  NotificationWidget(Time: '4D',),
+                  NotificationWidget(Time: '1W',),
+                  NotificationWidget(Time: '1W',),
+                  NotificationWidget(Time: '2W',),
+                  NotificationWidget(Time: '3W',),],
+              )
 
             ],
           ),

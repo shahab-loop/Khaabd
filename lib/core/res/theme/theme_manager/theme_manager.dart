@@ -32,6 +32,11 @@ class ThemeManager {
         fontSize: 10,
         fontWeight: FontWeight.w600,
       ),
+      displayLarge: GoogleFonts.poppins(
+        color: ThemeManager.secondaryColor,
+        fontSize: 10,
+        fontWeight: FontWeight.w400,
+      ),
       bodySmall: GoogleFonts.poppins(
         color: secondaryColor,
         fontSize: 14,

@@ -6,11 +6,11 @@ class CustomSmallContainer extends StatefulWidget {
   final double height;
   final double width;
   final Color backgroundColor;
-  final String? backgroundImagePath; // optional background image
+  final String? backgroundImagePath;
   final Color textColor;
   final Color tappedTextColor;
   final VoidCallback? onTap;
-  final String imagePath; // avatar image
+  final String imagePath;
 
   const CustomSmallContainer({
     super.key,
@@ -32,7 +32,7 @@ class CustomSmallContainer extends StatefulWidget {
 class _CustomSmallContainerState extends State<CustomSmallContainer> {
   bool _isTapped = false;
 
-  void _handleTap() {
+  void handleTap() {
     setState(() {
       _isTapped = !_isTapped;
     });
@@ -42,7 +42,7 @@ class _CustomSmallContainerState extends State<CustomSmallContainer> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _handleTap,
+      onTap:handleTap,
       child: Container(
         height: widget.height,
         width: widget.width,

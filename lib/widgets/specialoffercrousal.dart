@@ -4,6 +4,12 @@ import 'package:khaabd/core/generated/assets.gen.dart';
 import 'package:khaabd/core/res/theme/theme_manager/theme_manager.dart';
 import 'package:khaabd/core/utils/size_utils.dart';
 
+import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:khaabd/core/generated/assets.gen.dart';
+import 'package:khaabd/core/res/theme/theme_manager/theme_manager.dart';
+import 'package:khaabd/core/utils/size_utils.dart';
+
 class SpecialOffersCarousel extends StatefulWidget {
   const SpecialOffersCarousel({super.key});
 
@@ -39,7 +45,7 @@ class _SpecialOffersCarouselState extends State<SpecialOffersCarousel> {
               return Padding(
                 padding: EdgeInsets.symmetric(horizontal: 2.w),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(24),
                   child: Image.asset(
                     banners[index],
                     fit: BoxFit.cover,
@@ -55,12 +61,14 @@ class _SpecialOffersCarouselState extends State<SpecialOffersCarousel> {
           children: List.generate(banners.length, (index) {
             return AnimatedContainer(
               duration: const Duration(milliseconds: 300),
-              margin: EdgeInsets.symmetric(horizontal: 1.w),
-              width: _currentPage == index ? 7.w : 6.w,
-              height: _currentPage == index ? 7.w : 6.w,
+              margin: EdgeInsets.symmetric(horizontal: 4.w),
+              width: _currentPage == index ? 20.w : 8.w, // Long when selected
+              height: 6.h,
               decoration: BoxDecoration(
-                color: _currentPage == index ? ThemeManager.white : Colors.grey,
-                shape: BoxShape.circle,
+                color: _currentPage == index
+                    ? ThemeManager.white
+                    : Colors.grey.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(12),
               ),
             );
           }),
@@ -69,3 +77,4 @@ class _SpecialOffersCarouselState extends State<SpecialOffersCarousel> {
     );
   }
 }
+

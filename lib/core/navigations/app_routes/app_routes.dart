@@ -8,7 +8,9 @@ import 'package:khaabd/screens/auth/change_password/change_password.dart';
 import 'package:khaabd/screens/auth/forgot_screen/forgot_screen.dart';
 import 'package:khaabd/screens/auth/newpassword_screen/newpassword_screen.dart';
 import 'package:khaabd/screens/auth/register_screen/register_screen.dart';
+import 'package:khaabd/screens/deals_screen/deals_screen.dart';
 import 'package:khaabd/screens/home_screen/home_screen.dart';
+import 'package:khaabd/screens/item-description/item_description.dart';
 import 'package:khaabd/screens/notification_screen/notification_screen.dart';
 import 'package:khaabd/screens/onboarding/onboarding_screen.dart';
 import 'package:khaabd/screens/profile/profile_screen.dart';
@@ -81,6 +83,16 @@ GetPage(
       name: Routes.notificationScreen,
       binding: NotificationScreenBinding(),
       page: () => NotificationScreen(),
+    ),
+GetPage(
+      name: Routes.dealsScreen,
+      binding: DealsScreenBinding(),
+      page: () => DealsScreen(),
+    ),
+    GetPage(
+      name: Routes.itemDescription,
+      binding: ItemDescriptionBinding(),
+      page: () => ItemDescription(),
     ),
 
   ];

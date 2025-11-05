@@ -13,6 +13,7 @@ class TextFormFieldSvgs extends StatelessWidget {
   final Color? prefixColor;
   final Color? suffixColor;
   final Color? hintColor;
+  final ValueChanged<String>? onChanged; // <-- Add this
 
   const TextFormFieldSvgs({
     super.key,
@@ -25,6 +26,7 @@ class TextFormFieldSvgs extends StatelessWidget {
     this.prefixColor,
     this.suffixColor,
     this.hintColor, // <-- added
+    this.onChanged,
   });
 
   @override
@@ -39,6 +41,7 @@ class TextFormFieldSvgs extends StatelessWidget {
       child: TextFormField(
         obscureText: obsecure,
         style: TextStyle(color: Colors.grey[800], fontSize: 16.px),
+        onChanged: onChanged,
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: TextStyle(
