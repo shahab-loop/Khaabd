@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/get_instance.dart';
 import 'package:khaabd/core/generated/assets.gen.dart';
 import 'package:khaabd/core/navigations/navigation_helper/navigation_helper.dart';
+import 'package:khaabd/core/navigations/routes/routes.dart';
 import 'package:khaabd/core/res/theme/theme_manager/theme_manager.dart';
 import 'package:khaabd/core/utils/size_utils.dart';
 import 'package:khaabd/screens/deals_screen/controller/deals_controller.dart';
@@ -24,7 +26,8 @@ class DealsScreen extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
@@ -37,7 +40,16 @@ class DealsScreen extends StatelessWidget {
                     'Cheesious',
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
-                  SvgPicture.asset(Assets.svgs.home,color: ThemeManager.secondaryColor,height:24.h ,width: 24.w,)
+                  GestureDetector(onTap: () {
+                    NavigationHelper.navigateTo(Routes.restaurentDetailsScreen);
+                  },
+                    child: SvgPicture.asset(
+                      Assets.svgs.home,
+                      color: ThemeManager.secondaryColor,
+                      height: 24.h,
+                      width: 24.w,
+                    ),
+                  ),
                 ],
               ),
               Gap(40.h),
@@ -47,14 +59,12 @@ class DealsScreen extends StatelessWidget {
                     onTap: () {
                       NavigationHelper.navigateTo('/DealsScreen');
                     },
-                    child: SizedBox(
-                      child: CustomSmallContainer(
-                        text: 'Deals',
-                        backgroundColor: ThemeManager.white,
-                        imagePath: Assets.images.offer.path,
-                        width: 100.w,
-                        tappedTextColor: ThemeManager.secondaryColor,
-                      ),
+                    child: CustomSmallContainer(
+                      text: 'Deals',
+                      backgroundColor: ThemeManager.white,
+                      imagePath: Assets.images.offer.path,
+                      width: 100.w,
+                      tappedTextColor: ThemeManager.secondaryColor,
                     ),
                   ),
                   Gap(8.w),
@@ -93,29 +103,41 @@ class DealsScreen extends StatelessWidget {
                 ],
               ),
               Gap(8.h),
-              Row(
-                children: [
-                  // CustomContainerWidget(
-                  //   image: Assets.images.delicious.path,
-                  // ),
-                  // Gap(12.w),
-                  // CustomContainerWidget(
-                  //   image: Assets.images.biryani.path,
-                  // ),
-                ],
+              GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: 4,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 12,
+                  crossAxisSpacing: 12,
+                  childAspectRatio: 0.75,
+                  mainAxisExtent: 250,
+                ),
+                itemBuilder: (context, index) {
+                  final dish = controller.dishes[index];
+                  final images = [
+                    Assets.images.delicious.path,
+                    Assets.images.biryani.path,
+                    Assets.images.burger.path,
+                    Assets.images.hotburger.path,
+                  ];
+
+                  return CustomContainerWidget(
+                    image: images[index],
+                    restaurantName: 'Cook n Bull',
+                    dishName: 'High Tea',
+                    price:dish.price,
+                    onTap: () {
+                      NavigationHelper.navigateTo(
+                          Routes.itemDescription,
+                           arguments: dish,
+                      );
+                    },
+                  );
+                },
               ),
               Gap(12.h),
-              Row(
-                children: [
-                  // CustomContainerWidget(
-                  //   image: Assets.images.hotburger.path,
-                  // ),
-                  // Gap(12.w),
-                  // CustomContainerWidget(
-                  //   image: Assets.images.burger.path,
-                  // ),
-                ],
-              ),
             ],
           ),
         ),

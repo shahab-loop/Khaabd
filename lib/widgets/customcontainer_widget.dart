@@ -27,7 +27,7 @@ class CustomContainerWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
-        height: 226.h,
+        height: 220.h,
         width: 164.5.w,
         decoration: BoxDecoration(
           color: ThemeManager.white,
@@ -78,8 +78,8 @@ class CustomContainerWidget extends StatelessWidget {
               padding: const EdgeInsets.only(
                 left: 8,
                 right: 8,
-                top: 3,
-                bottom: 3,
+                top: 8,
+                // bottom: 3,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
