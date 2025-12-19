@@ -3,67 +3,127 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:khaabd/core/res/theme/theme_manager/theme_manager.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class TextFormFieldSvgs extends StatelessWidget {
+class TextFormFieldWidget extends StatefulWidget {
   final String hintText;
-  final bool obsecure;
+  final bool obscure;
+  final bool isPasswordField;
+
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
+  final ValueChanged<String>? onChanged;
+
   final String? prefixSvg;
   final String? suffixSvg;
-  final double? height;
-  final double? width;
+  final String? suffixSvgOff;
   final Color? prefixColor;
   final Color? suffixColor;
+  final double? width;
   final Color? hintColor;
-  final ValueChanged<String>? onChanged; // <-- Add this
+  final Color? borderColor;
+  final Color? focusedBorderColor;
+  final EdgeInsetsGeometry? contentPadding;
+  final int maxLines;
+  final int? minLines;
+  final bool useUnderlineBorder;
 
-  const TextFormFieldSvgs({
+  const TextFormFieldWidget({
     super.key,
     required this.hintText,
-    this.obsecure = false,
+    this.obscure = false,
+    this.isPasswordField = false,
+    this.controller,
+    this.validator,
+    this.onChanged,
     this.prefixSvg,
     this.suffixSvg,
-    this.height,
-    this.width,
+    this.suffixSvgOff,
     this.prefixColor,
     this.suffixColor,
-    this.hintColor, // <-- added
-    this.onChanged,
+    this.width,
+    this.hintColor,
+    this.borderColor,
+    this.focusedBorderColor,
+    this.contentPadding,
+    this.maxLines = 1,
+    this.minLines,
+    this.useUnderlineBorder = false,
   });
 
   @override
+  State<TextFormFieldWidget> createState() => _TextFormFieldWidgetState();
+}
+
+class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
+  late bool _obscureText;
+
+  @override
+  void initState() {
+    _obscureText = widget.obscure;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: ThemeManager.white,
-        borderRadius: BorderRadius.circular(4),
+    final enabledColor =
+        widget.borderColor ?? ThemeManager.primaryColor!;
+    final focusedColor =
+        widget.focusedBorderColor ?? ThemeManager.primaryColor!;
+
+    final InputBorder border = widget.useUnderlineBorder
+        ? UnderlineInputBorder(
+      borderSide: BorderSide(color: enabledColor),
+    )
+        : OutlineInputBorder(
+      borderRadius: BorderRadius.circular(4),
+      borderSide: BorderSide(color: enabledColor),
+    );
+
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        minHeight: 48.px, // 👈 maintains field size
+        maxWidth: widget.width ?? 327.px,
       ),
-      height: height ?? 48.px,
-      width: width ?? 327.px,
       child: TextFormField(
-        obscureText: obsecure,
-        style: TextStyle(color: Colors.grey[800], fontSize: 16.px),
-        onChanged: onChanged,
+        controller: widget.controller,
+        obscureText: widget.isPasswordField ? _obscureText : false,
+        validator: widget.validator,
+        onChanged: widget.onChanged,
+        maxLines: widget.maxLines,
+        minLines: widget.minLines,
+        style: TextStyle(
+          color: ThemeManager.darkGrey,
+          fontSize: 14.px,
+        ),
         decoration: InputDecoration(
-          hintText: hintText,
+          hintText: widget.hintText,
           hintStyle: TextStyle(
-            color: hintColor ?? Colors.grey[400],
+            color: widget.hintColor ?? Colors.grey,
             fontSize: 12.px,
           ),
-          border: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey),
+
+          contentPadding: widget.contentPadding ??
+              const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+
+          border: border,
+          enabledBorder: border,
+          focusedBorder: border,
+          errorBorder: border.copyWith(
+            borderSide: const BorderSide(color: Colors.red),
           ),
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey),
+
+          errorStyle: const TextStyle(
+            fontSize: 11,
+            height: 1.2, // 👈 prevents jump
           ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: ThemeManager.darkGrey!, width: 1),
-          ),
-          prefixIcon: prefixSvg != null
+
+          prefixIcon: widget.prefixSvg != null
               ? Padding(
             padding: const EdgeInsets.all(12),
             child: SvgPicture.asset(
-              prefixSvg!,
+              widget.prefixSvg!,
               colorFilter: ColorFilter.mode(
-                prefixColor ?? ThemeManager.secondaryColor!,
+                widget.prefixColor ??
+                    ThemeManager.secondaryColor!,
                 BlendMode.srcIn,
               ),
               width: 20,
@@ -71,17 +131,28 @@ class TextFormFieldSvgs extends StatelessWidget {
             ),
           )
               : null,
-          suffixIcon: suffixSvg != null
-              ? Padding(
-            padding: const EdgeInsets.all(12),
-            child: SvgPicture.asset(
-              suffixSvg!,
-              colorFilter: ColorFilter.mode(
-                suffixColor ?? ThemeManager.secondaryColor!,
-                BlendMode.srcIn,
+
+          suffixIcon: widget.isPasswordField
+              ? InkWell(
+            onTap: () {
+              setState(() {
+                _obscureText = !_obscureText;
+              });
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: SvgPicture.asset(
+                _obscureText
+                    ? widget.suffixSvg!
+                    : widget.suffixSvgOff!,
+                colorFilter: ColorFilter.mode(
+                  widget.suffixColor ??
+                      ThemeManager.secondaryColor!,
+                  BlendMode.srcIn,
+                ),
+                width: 20,
+                height: 20,
               ),
-              width: 20,
-              height: 20,
             ),
           )
               : null,

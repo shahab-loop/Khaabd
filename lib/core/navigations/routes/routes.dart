@@ -15,6 +15,7 @@ import 'package:khaabd/screens/notification_screen/notification_screen.dart';
 import 'package:khaabd/screens/onboarding/onboarding_screen.dart';
 import 'package:khaabd/screens/profile/profile_screen.dart';
 import 'package:khaabd/screens/restaurent_details/restaurentdetails_screen.dart';
+import 'package:khaabd/screens/review_screen/review_screen.dart';
 import 'package:khaabd/screens/role_screen/role_screen.dart';
 import 'package:khaabd/screens/splash_screen/splash.dart';
 
@@ -35,4 +36,5 @@ class Routes {
   static const String dealsScreen = DealsScreen.routeName;
   static const String itemDescription = ItemDescription.routeName;
   static const String restaurentDetailsScreen = RestaurentDetailsScreen.routeName;
+  static const String reviewScreen = ReviewScreen.routeName;
 }

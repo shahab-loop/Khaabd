@@ -4,9 +4,13 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:khaabd/core/generated/assets.gen.dart';
 import 'package:khaabd/core/navigations/navigation_helper/navigation_helper.dart';
+import 'package:khaabd/core/navigations/routes/routes.dart';
 import 'package:khaabd/core/res/theme/theme_manager/theme_manager.dart';
 import 'package:khaabd/core/utils/size_utils.dart';
 import 'package:khaabd/screens/profile/controller/profile_controller.dart';
+import 'package:khaabd/storage/local_storage.dart';
+
+import '../../storage/storage_keys.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const String routeName = '/ProfileScreen';
@@ -143,7 +147,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ],
               ),
-            ],
+              Gap(30.h),
+              GestureDetector(
+                onTap: () async {
+                  await LocalStorage.remove(StorageKeys.userEmail);
+                  await LocalStorage.remove(StorageKeys.userPassword);
+                  Get.offAllNamed(Routes.loginScreen);
+                },
+                child: Container(
+                  height: 40,
+                  width: 140,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: ThemeManager.secondaryColor,
+                  ),
+                  child: Center(
+                    child: Text(
+                      'LogOut',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                  ),
+                ),
+              ),],
           ),
         ),
       ),

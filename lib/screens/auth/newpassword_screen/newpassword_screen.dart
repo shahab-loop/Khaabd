@@ -93,11 +93,9 @@ class NewPasswordScreen extends StatelessWidget {
                       ],
                     ),
                     Gap(4.h),
-                    TextFormFieldSvgs(
-                      hintText: 'Input Password',
-                      prefixSvg: Assets.svgs.scan,
-                      suffixSvg: Assets.svgs.eye,
-                    ),
+                    TextFormFieldWidget(hintText: 'Input Password',prefixSvg: Assets.svgs.scan,
+                      suffixSvg: Assets.svgs.eye,),
+
                     Gap(24.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -109,11 +107,10 @@ class NewPasswordScreen extends StatelessWidget {
                       ],
                     ),
                     Gap(4.h),
-                    TextFormFieldSvgs(
-                      hintText: 'Re Enter Your Password',
+                    TextFormFieldWidget(hintText: 'Re Enter Your Password',
                       prefixSvg: Assets.svgs.scan,
-                      suffixSvg: Assets.svgs.hide,
-                    ),
+                      suffixSvg: Assets.svgs.hide,),
+
                     Gap(39.h),
                     CustomElevatedButton(
                       text: 'Submit',height: 56.h,
@@ -122,7 +119,6 @@ class NewPasswordScreen extends StatelessWidget {
                       },
                       backgroundColor: ThemeManager.secondaryColor,
                       BorderColor: ThemeManager.secondaryColor,
-                      Svg: '',
                       borderRadius: 50,
                     ),
                   ],

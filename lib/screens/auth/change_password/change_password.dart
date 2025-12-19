@@ -201,7 +201,6 @@ class _ChangePasswordState extends State<ChangePassword> {
                     },
                     backgroundColor: ThemeManager.secondaryColor,
                     BorderColor: ThemeManager.secondaryColor,
-                    Svg: '',
                     borderRadius: 50,
                   ),
                 ],

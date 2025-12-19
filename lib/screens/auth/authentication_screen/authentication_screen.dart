@@ -231,7 +231,6 @@ class AuthenticationScreen extends StatelessWidget {
                       },
                       backgroundColor: ThemeManager.secondaryColor,
                       BorderColor: ThemeManager.secondaryColor,
-                      Svg: '',
                       borderRadius: 50,
                     ),
                   ],

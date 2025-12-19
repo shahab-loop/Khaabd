@@ -6,6 +6,7 @@ import 'package:get/get_instance/get_instance.dart';
 import 'package:khaabd/core/generated/assets.gen.dart';
 import 'package:khaabd/core/navigations/navigation_helper/navigation_helper.dart';
 import 'package:khaabd/core/res/theme/theme_manager/theme_manager.dart';
+import 'package:khaabd/core/utils/foam_validator.dart';
 import 'package:khaabd/core/utils/size_utils.dart';
 import 'package:khaabd/screens/auth/forgot_screen/controller/forgot_controller.dart';
 import 'package:khaabd/widgets/base_scaffold.dart';
@@ -24,32 +25,35 @@ class ForgotScreen extends StatelessWidget {
     return BaseScaffold(
       body: Stack(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16),
-                    child: GestureDetector(
-                      onTap: () {
-                        NavigationHelper.goBack();
-                      },
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: ThemeManager.white,
-                        size: 30,
+          Form(
+            key: controller.formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16),
+                      child: GestureDetector(
+                        onTap: () {
+                          NavigationHelper.goBack();
+                        },
+                        child: Icon(
+                          Icons.arrow_back_ios,
+                          color: ThemeManager.white,
+                          size: 30,
+                        ),
                       ),
                     ),
-                  ),
-                  Gap(4.w),
-                  Text(
-                    'Forgot Password',
-                    style: Theme.of(context).textTheme.headlineLarge,
-                  ),
-                ],
-              ),
-            ],
+                    Gap(4.w),
+                    Text(
+                      'Forgot Password',
+                      style: Theme.of(context).textTheme.headlineLarge,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
 
           Positioned(
@@ -90,19 +94,19 @@ class ForgotScreen extends StatelessWidget {
                       ],
                     ),
                     Gap(4.h),
-                    TextFormFieldSvgs(
-                      hintText: 'My email',
-                      prefixSvg: Assets.svgs.sms,
-                    ),
+                    TextFormFieldWidget(hintText: 'My email',prefixSvg: Assets.svgs.sms,validator:  (String? value) =>
+                        emailValidator(value, context),),
+
                     Gap(39.h),
                     CustomElevatedButton(
                       text: 'Send Verification Code',height: 56.h,
                       onPressed: () {
-                        NavigationHelper.navigateTo('/AuthenticationScreen');
+                        if (controller.formKey.currentState!.validate()) {
+                          NavigationHelper.navigateTo('/AccountAuthenticationScreen');
+                        }
                       },
                       backgroundColor: ThemeManager.secondaryColor,
                       BorderColor: ThemeManager.secondaryColor,
-                      Svg: '',
                       borderRadius: 50,
                     ),
                   ],

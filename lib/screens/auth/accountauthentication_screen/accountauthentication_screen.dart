@@ -10,6 +10,7 @@ import 'package:khaabd/core/utils/size_utils.dart';
 import 'package:khaabd/screens/auth/accountauthentication_screen/controller/accountauthentication_controller.dart';
 import 'package:khaabd/widgets/base_scaffold.dart';
 import 'package:khaabd/widgets/customised_widget.dart';
+import 'package:pinput/pinput.dart';
 
 class AccountAuthenticationScreen extends StatelessWidget {
   static const String routeName = '/AccountAuthenticationScreen';
@@ -17,37 +18,41 @@ class AccountAuthenticationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AccountAuthenticationController controller = Get.find<AccountAuthenticationController>();
+    final AccountAuthenticationController controller =
+        Get.find<AccountAuthenticationController>();
 
     return BaseScaffold(
       body: Stack(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16),
-                    child: GestureDetector(
-                      onTap: () {
-                        NavigationHelper.goBack();
-                      },
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: ThemeManager.white,
-                        size: 30,
+          Form(
+            key: controller.formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16),
+                      child: GestureDetector(
+                        onTap: () {
+                          NavigationHelper.goBack();
+                        },
+                        child: Icon(
+                          Icons.arrow_back_ios,
+                          color: ThemeManager.white,
+                          size: 30,
+                        ),
                       ),
                     ),
-                  ),
-                  Gap(4.w),
-                  Text(
-                    'Authentication \nYour Account',
-                    style: Theme.of(context).textTheme.headlineLarge,
-                  ),
-                ],
-              ),
-            ],
+                    Gap(4.w),
+                    Text(
+                      'Authentication \nYour Account',
+                      style: Theme.of(context).textTheme.headlineLarge,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
 
           Positioned(
@@ -75,139 +80,22 @@ class AccountAuthenticationScreen extends StatelessWidget {
                     ),
                     Text(
                       'A reset code has been sent to Example@gmail.com, check your email to continue the password reset process.',
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(fontSize: 10),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.displaySmall?.copyWith(fontSize: 10),
                       textAlign: TextAlign.center,
                     ),
                     Gap(9),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: 46,
-                          height: 50,
-                          child: TextFormField(
-                            textAlign: TextAlign.center,
-                            keyboardType: TextInputType.number,
-                            style: const TextStyle(fontSize: 20),
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(4),borderSide: BorderSide(color: ThemeManager.primaryColor)
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(4),borderSide: BorderSide(color: ThemeManager.primaryColor)
-                              ),
-                            ),
-                          ),
-                        ),
-                        Gap(5.2.w),
-                        SizedBox(
-                          width: 46,
-                          height: 50,
-                          child: TextFormField(
-                            textAlign: TextAlign.center,
-                            keyboardType: TextInputType.number,
-                            style: const TextStyle(fontSize: 20),
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(4),borderSide: BorderSide(color: ThemeManager.primaryColor)
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(4),borderSide: BorderSide(color: ThemeManager.primaryColor)
-                              ),
-                            ),
-                          ),
-                        ),
-                        Gap(5.2.w),
-                        SizedBox(
-                          width: 46,
-                          height: 50,
-                          child: TextFormField(
-                            textAlign: TextAlign.center,
-                            keyboardType: TextInputType.number,
-                            style: const TextStyle(fontSize: 20),
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(4),borderSide: BorderSide(color: ThemeManager.primaryColor)
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(4),borderSide: BorderSide(color: ThemeManager.primaryColor)
-                              ),
-                            ),
-                          ),
-                        ),
-                        Gap(5.2.w),
-                        SizedBox(
-                          width: 46,
-                          height: 50,
-                          child: TextFormField(
-                            textAlign: TextAlign.center,
-                            keyboardType: TextInputType.number,
-                            style: const TextStyle(fontSize: 20),
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(4),borderSide: BorderSide(color: ThemeManager.primaryColor)
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(4),borderSide: BorderSide(color: ThemeManager.primaryColor)
-                              ),
-                            ),
-                          ),
-                        ),
-                        Gap(5.2.w),
-                        SizedBox(
-                          width: 46,
-                          height: 50,
-                          child: TextFormField(
-                            textAlign: TextAlign.center,
-                            keyboardType: TextInputType.number,
-                            style: const TextStyle(fontSize: 20),
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(4),borderSide: BorderSide(color: ThemeManager.primaryColor)
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(4),borderSide: BorderSide(color: ThemeManager.primaryColor)
-                              ),
-                            ),
-                          ),
-                        ),
-                        Gap(5.2.w),
-                        SizedBox(
-                          width: 46,
-                          height: 50,
-                          child: TextFormField(
-                            textAlign: TextAlign.center,
-                            keyboardType: TextInputType.number,
-                            style: const TextStyle(fontSize: 20),
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(4),borderSide: BorderSide(color: ThemeManager.primaryColor)
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(4),borderSide: BorderSide(color: ThemeManager.primaryColor)
-                              ),
-                            ),
-                          ),
-                        ),
-                        Gap(5.2.w),
-                      ],
+                    Pinput(
+                      forceErrorState: true,
+                      controller: controller.otpController,
+                      length: 6,
+                      errorText: controller.otpController.text.length != 6 ? 'please provide 6 digit code' : 'Error',
+                      pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
+                      validator: (pin) {
+                        if (pin != '' && pin?.length == 6) return null;
+                        return 'Pin is incorrect';
+                      },
                     ),
                     Gap(16.h),
                     Row(
@@ -215,23 +103,31 @@ class AccountAuthenticationScreen extends StatelessWidget {
                       children: [
                         Text(
                           "Haven't received the verification code? ",
-                          style: Theme.of(context).textTheme.labelMedium?.copyWith(fontSize:10,fontWeight: FontWeight.w200 ),
+                          style: Theme.of(context).textTheme.labelMedium
+                              ?.copyWith(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w200,
+                              ),
                         ),
                         Text(
                           " Resend it. ",
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(fontSize: 10),
+                          style: Theme.of(
+                            context,
+                          ).textTheme.bodySmall?.copyWith(fontSize: 10),
                         ),
                       ],
                     ),
                     Gap(39.h),
                     CustomElevatedButton(
-                      text: 'Submit',height: 56.h,
+                      text: 'Submit',
+                      height: 56.h,
                       onPressed: () {
-                        NavigationHelper.navigateTo('/LoginScreen');
+                        if(controller.otpController.text.length == 6){
+                          NavigationHelper.navigateTo('/LoginScreen');
+                        }
                       },
                       backgroundColor: ThemeManager.secondaryColor,
                       BorderColor: ThemeManager.secondaryColor,
-                      Svg: '',
                       borderRadius: 50,
                     ),
                   ],
@@ -239,7 +135,9 @@ class AccountAuthenticationScreen extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(bottom:300 ,left:135 ,
+          Positioned(
+            bottom: 300,
+            left: 135,
             child: Container(
               height: 100,
               width: 100,

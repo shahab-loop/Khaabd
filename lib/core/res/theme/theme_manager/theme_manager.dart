@@ -11,6 +11,9 @@ class ThemeManager {
   static Color black = Color(0xff0C0D0D);
   static Color darkGrey = Color(0xff9B9C9C);
   static Color yellow = Color(0xffFFCA08);
+  static Color Darkgrey = Color(0xff5C6065);
+  static Color grey = Color(0xffE0E0E0);
+  static Color grey1 = Color(0xff7D7D7D);
 
   static final ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,

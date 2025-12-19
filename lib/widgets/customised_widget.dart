@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:khaabd/core/utils/size_utils.dart';
 
-
 class CustomElevatedButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
@@ -14,8 +13,9 @@ class CustomElevatedButton extends StatelessWidget {
   final double? height;
   final EdgeInsetsGeometry? padding;
   final double? fontSize;
-  final String Svg;
-  final Color BorderColor ;
+  final String? Svg;
+  final Color BorderColor;
+
   const CustomElevatedButton({
     super.key,
     required this.text,
@@ -27,7 +27,8 @@ class CustomElevatedButton extends StatelessWidget {
     this.height,
     this.padding,
     this.fontSize,
-    required this.BorderColor, required this.Svg,
+    this.Svg,
+    required this.BorderColor,
   });
 
   @override
@@ -38,23 +39,30 @@ class CustomElevatedButton extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: backgroundColor,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(borderRadius),side: BorderSide(color: BorderColor)
-          ),
           padding: padding,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
+            side: BorderSide(color: BorderColor),
+          ),
         ),
         onPressed: onPressed,
-        child: Row(mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text(
-            text,
-            style: TextStyle(
-              color: textColor,
-              fontSize: fontSize ?? 16,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              text,
+              style: TextStyle(
+                color: textColor,
+                fontSize: fontSize ?? 16,
+              ),
             ),
-          ),
-            Gap(10.w),
-            SvgPicture.asset(Svg),
 
+            /// ✅ SVG only renders if provided
+            if (Svg != null && Svg!.isNotEmpty) ...[
+              Gap(10.w),
+              SvgPicture.asset(Svg!),
+            ],
           ],
         ),
       ),

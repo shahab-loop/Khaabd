@@ -13,6 +13,7 @@ import 'package:khaabd/screens/notification_screen/controller/notification_contr
 import 'package:khaabd/screens/onboarding/controller/onboarding_controller.dart';
 import 'package:khaabd/screens/profile/controller/profile_controller.dart';
 import 'package:khaabd/screens/restaurent_details/controller/restaurentdetails_controller.dart';
+import 'package:khaabd/screens/restaurent_details/controller/review_controller.dart';
 import 'package:khaabd/screens/role_screen/controller/role_controller.dart';
 import 'package:khaabd/screens/splash_screen/controller/spalsh_controller.dart';
 
@@ -111,5 +112,12 @@ class RestaurentDetailsScreenBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => RestaurentDetailsController());
+  }
+}
+
+class ReviewScreenBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => ReviewController());
   }
 }

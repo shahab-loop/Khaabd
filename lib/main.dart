@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:khaabd/core/utils/size_utils.dart';
+import 'package:khaabd/storage/local_storage.dart';
 
 import 'core/navigations/app_routes/app_routes.dart';
 import 'core/res/theme/theme_manager/theme_manager.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await LocalStorage.init();
   runApp(const MyApp());
 }
 

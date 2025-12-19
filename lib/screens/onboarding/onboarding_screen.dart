@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:khaabd/core/constants/storage_keys.dart';
 import 'package:khaabd/core/generated/assets.gen.dart';
 import 'package:khaabd/core/navigations/navigation_helper/navigation_helper.dart';
 import 'package:khaabd/core/res/theme/theme_manager/theme_manager.dart';
 import 'package:khaabd/core/utils/size_utils.dart';
+import 'package:khaabd/storage/local_storage.dart';
+import 'package:khaabd/storage/storage_keys.dart';
 import 'package:khaabd/widgets/base_scaffold.dart';
 import 'package:khaabd/widgets/customised_widget.dart';
 import 'controller/onboarding_controller.dart';
@@ -39,12 +42,12 @@ class OnboardingScreen extends StatelessWidget {
           Gap(40.h),
           CustomElevatedButton(
             text: 'GET STARTED',
-            onPressed: () {
+            onPressed: () async {
+              await LocalStorage.setBool(StorageKeys.isFirstTime, true);
               NavigationHelper.navigateTo('/RoleScreen');
             },
             backgroundColor: ThemeManager.secondaryColor,
             BorderColor: ThemeManager.secondaryColor,
-            Svg: '',
             height: 56.h,
             width: 350.w,
             borderRadius: 50,

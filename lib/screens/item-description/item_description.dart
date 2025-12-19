@@ -28,7 +28,7 @@ class ItemDescription extends StatelessWidget {
                     color: ThemeManager.white,
                   ),
                 ),
-                Gap(100.w),
+                Gap(135.w),
                 Text(
                   controller.dish.dishName,
                   style: Theme.of(context).textTheme.bodyMedium,

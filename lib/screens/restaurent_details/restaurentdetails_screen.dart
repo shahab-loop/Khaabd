@@ -3,10 +3,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:khaabd/core/generated/assets.gen.dart';
+import 'package:khaabd/core/navigations/navigation_helper/navigation_helper.dart';
+import 'package:khaabd/core/navigations/routes/routes.dart';
 import 'package:khaabd/core/res/theme/theme_manager/theme_manager.dart';
 import 'package:khaabd/core/utils/size_utils.dart';
-import 'package:khaabd/screens/restaurent_details/controller/restaurentdetails_controller.dart';
+import 'package:khaabd/screens/home_screen/home_screen.dart';
+import 'package:khaabd/screens/restaurent_details/controller/restaurentdetails_controller.dart' hide showAppBottomSheet;
 import 'package:khaabd/widgets/customised_widget.dart';
+import 'package:khaabd/widgets/review_widget.dart';
+import 'package:khaabd/widgets/textfieldwithsvg.dart';
+
 
 class RestaurentDetailsScreen extends StatelessWidget {
   static const String routeName = '/RestaurentDetailsScreen';
@@ -242,58 +248,15 @@ class RestaurentDetailsScreen extends StatelessWidget {
                   ],
                 ),
                 Gap(8.h),
-                Divider(
-                  height: 1.h,
-                  thickness: 1,
-                  color: ThemeManager.greyColor,
-                ),
+                Divider(height: 1, thickness: 1, color: ThemeManager.greyColor),
                 Gap(8.h),
-                Row(
-                  children: [
-                    SvgPicture.asset(Assets.svgs.star),
-                    SvgPicture.asset(Assets.svgs.star),
-                    SvgPicture.asset(Assets.svgs.star),
-                    SvgPicture.asset(Assets.svgs.star),
-                    SvgPicture.asset(Assets.svgs.star),
-                    Gap(4.w),
-                    Text(
-                      'Mohsin',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  ],
-                ),
-                Gap(4.h),
-                Text(
-                  'Very cooperative seller and equipment just like new.',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                Gap(8.h),
-                Divider(thickness: 1, height: 1, color: ThemeManager.greyColor),
-                Gap(8.h),
-                Row(
-                  children: [
-                    SvgPicture.asset(Assets.svgs.star),
-                    SvgPicture.asset(Assets.svgs.star),
-                    SvgPicture.asset(Assets.svgs.star),
-                    SvgPicture.asset(Assets.svgs.star),
-                    SvgPicture.asset(Assets.svgs.star),
-                    Gap(4.w),
-                    Text(
-                      'Mohsin',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  ],
-                ),
-                Gap(4.h),
-                Text(
-                  'Very cooperative seller and equipment just like new.',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
+                ReviewWidget(userName: 'Mohsin', comment: 'Very cooperative seller and equipment just like new.',),
+                ReviewWidget(userName: 'Mohsin', comment: 'Very cooperative seller and equipment just like new.',),
                 Gap(16.h),
                 Padding(
                   padding: EdgeInsets.only(left: 115.w),
                   child: GestureDetector(onTap: () {
-
+NavigationHelper.navigateTo(Routes.reviewScreen);
                   },
                     child: SizedBox(
                       child: Row(
@@ -316,11 +279,12 @@ class RestaurentDetailsScreen extends StatelessWidget {
                 CustomElevatedButton(
                   text: 'Add Review',
                   onPressed: () {
+                    showAppBottomSheet(context, );
                   },
                   backgroundColor: ThemeManager.secondaryColor,
                   BorderColor: ThemeManager.secondaryColor,
-                  Svg: '',width:140.w ,borderRadius:50,height: 40.h,
-                ),
+                  width:140.w ,borderRadius:50,height: 40.h,
+                  ),
               ],
             ),
           ),
@@ -328,4 +292,88 @@ class RestaurentDetailsScreen extends StatelessWidget {
       ),
     );
   }
+}
+void showAppBottomSheet(BuildContext context,) {
+  showModalBottomSheet(
+    context: context,
+    backgroundColor: ThemeManager.white,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+    ),
+    isScrollControlled: true,
+    builder: (BuildContext context) {
+      return Padding(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+          left: 16,
+          right: 16,
+          top: 12,
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'Review',
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(fontSize: 22),
+              ),
+              Gap(8.h),
+              Text(
+                'Add Your Restaurant Experience ',
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(fontSize: 16,fontWeight: FontWeight.w100,color: ThemeManager.Darkgrey),
+              ),
+              Gap(24.h),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.asset(
+                  Assets.images.profile.path,
+                  height: 56.h,
+                  width: 56.w,
+                ),
+              ),
+              Gap(1.h),
+              Text(
+                'Mohsin',
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w500,color: ThemeManager.black),
+              ),
+              Gap(4.w),
+
+              Gap(12.h),
+              TextFormFieldWidget(hintText: 'Comment',borderColor: ThemeManager.secondaryColor,maxLines: 5,width: 310,),
+              Gap(25.h),
+              Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomElevatedButton(
+                    text: 'Cancel',
+                    onPressed: () {
+                      showAppBottomSheet(context, );
+                    },
+                    backgroundColor:ThemeManager.white ,
+                    BorderColor: ThemeManager.grey1,
+                    width: 140.w,
+                    borderRadius: 50,
+                    height: 40.h,
+                    textColor: ThemeManager.grey1,
+                  ),
+                  CustomElevatedButton(
+                    text: 'Submit',
+                    onPressed: () {
+                      showAppBottomSheet(context, );
+                    },
+                    backgroundColor: ThemeManager.secondaryColor,
+                    BorderColor: ThemeManager.secondaryColor,
+                    width: 140.w,
+                    borderRadius: 50,
+                    height: 40.h,
+                  ),
+                ],
+              ),
+Gap(35.h)
+            ],
+          ),
+        ),
+      );
+    },
+  );
 }

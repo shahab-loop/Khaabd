@@ -82,12 +82,12 @@ class HomeScreen extends StatelessWidget {
 
                 Row(
                   children: [
-                    TextFormFieldSvgs(
+                    TextFormFieldWidget(
                       hintText: 'Search for food or restaurant...',
                       prefixSvg: Assets.svgs.search,
                       prefixColor: ThemeManager.darkGrey,
                       width: 289.5.w,
-                      height: 40.h,
+                      // height: 40.h,
                       onChanged: (value) {
                         controller.searchText.value = value;
                       },
@@ -362,6 +362,7 @@ void showAppBottomSheet(BuildContext context, HomeScreenController controller) {
                   ),
                 ),
               ),
+              Gap(35.h)
             ],
           ),
         ),
