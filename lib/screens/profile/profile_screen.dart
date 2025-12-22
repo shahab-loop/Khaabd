@@ -6,6 +6,7 @@ import 'package:khaabd/core/generated/assets.gen.dart';
 import 'package:khaabd/core/navigations/navigation_helper/navigation_helper.dart';
 import 'package:khaabd/core/navigations/routes/routes.dart';
 import 'package:khaabd/core/res/theme/theme_manager/theme_manager.dart';
+import 'package:khaabd/core/utils/foam_validator.dart';
 import 'package:khaabd/core/utils/size_utils.dart';
 import 'package:khaabd/screens/profile/controller/profile_controller.dart';
 import 'package:khaabd/storage/local_storage.dart';
@@ -29,146 +30,155 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(
-                      Icons.arrow_back_ios_new,
-                      color: ThemeManager.white,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        Icons.arrow_back_ios_new,
+                        color: ThemeManager.white,
+                      ),
+                    ),
+                    Gap(115.w),
+                    Text(
+                      'Profile',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ],
+                ),
+                Gap(51.h),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.asset(
+                    Assets.images.profile.path,
+                    height: 114.h,
+                    width: 118.w,
+                  ),
+                ),
+                Gap(26.h),
+                Text(LocalStorage.getString(StorageKeys.userName).toString()),
+                Gap(30.h),
+                GestureDetector(
+                  onTap: () {
+                    showImageDialog(
+                      context,
+                      Assets.images.noprofile.path,
+                      controller,
+                    );
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 140,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: ThemeManager.secondaryColor,
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Edit',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
                     ),
                   ),
-                  Gap(115.w),
-                  Text(
-                    'Profile',
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                ],
-              ),
-              Gap(51.h),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Image.asset(
-                  Assets.images.profile.path,
-                  height: 114.h,
-                  width: 118.w,
                 ),
-              ),
-              Gap(56.h),
-              GestureDetector(
-                onTap: () {
-                  showImageDialog(context, Assets.images.noprofile.path);
-                },
-                child: Container(
-                  height: 40,
-                  width: 140,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: ThemeManager.secondaryColor,
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Edit',
+                Gap(40.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'App Notifications',
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
-                  ),
+                    Switch(
+                      value: isSwitched,
+                      activeTrackColor: ThemeManager.white,
+                      activeColor: ThemeManager.secondaryColor,
+                      onChanged: (value) {
+                        setState(() {
+                          isSwitched = value;
+                        });
+                      },
+                    ),
+                  ],
                 ),
-              ),
-              Gap(40.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'App Notifications',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  Switch(
-                    value: isSwitched,
-                    activeTrackColor: ThemeManager.white,
-                    activeColor: ThemeManager.secondaryColor,
-                    onChanged: (value) {
-                      setState(() {
-                        isSwitched = value;
-                      });
-                    },
-                  ),
-                ],
-              ),
-              Divider(color: ThemeManager.greyColor, height: 1),
-              Gap(13.5.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Change Password',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      NavigationHelper.navigateTo('/ChangePassword');
-                    },
-                    child: Icon(Icons.arrow_forward_ios),
-                  ),
-                ],
-              ),
-              Gap(13.5.h),
-              Divider(color: ThemeManager.greyColor, height: 1),
-              Gap(13.5.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Conditions',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Icon(Icons.arrow_forward_ios),
-                  ),
-                ],
-              ),
-              Gap(13.5.h),
-              Divider(color: ThemeManager.greyColor, height: 1),
-              Gap(13.5.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Privacy Policy',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Icon(Icons.arrow_forward_ios),
-                  ),
-                ],
-              ),
-              Gap(30.h),
-              GestureDetector(
-                onTap: () async {
-                  await LocalStorage.remove(StorageKeys.userEmail);
-                  await LocalStorage.remove(StorageKeys.userPassword);
-                  Get.offAllNamed(Routes.loginScreen);
-                },
-                child: Container(
-                  height: 40,
-                  width: 140,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: ThemeManager.secondaryColor,
-                  ),
-                  child: Center(
-                    child: Text(
-                      'LogOut',
+                Divider(color: ThemeManager.greyColor, height: 1),
+                Gap(13.5.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Change Password',
                       style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        NavigationHelper.navigateTo('/ChangePassword');
+                      },
+                      child: Icon(Icons.arrow_forward_ios),
+                    ),
+                  ],
+                ),
+                Gap(13.5.h),
+                Divider(color: ThemeManager.greyColor, height: 1),
+                Gap(13.5.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Conditions',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Icon(Icons.arrow_forward_ios),
+                    ),
+                  ],
+                ),
+                Gap(13.5.h),
+                Divider(color: ThemeManager.greyColor, height: 1),
+                Gap(13.5.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Privacy Policy',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Icon(Icons.arrow_forward_ios),
+                    ),
+                  ],
+                ),
+                Gap(30.h),
+                GestureDetector(
+                  onTap: () async {
+                    await LocalStorage.remove(StorageKeys.userEmail);
+                    await LocalStorage.remove(StorageKeys.userPassword);
+                    Get.offAllNamed(Routes.loginScreen);
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 140,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: ThemeManager.secondaryColor,
+                    ),
+                    child: Center(
+                      child: Text(
+                        'LogOut',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
                     ),
                   ),
                 ),
-              ),],
+              ],
+            ),
           ),
         ),
       ),
@@ -176,7 +186,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 }
 
-void showImageDialog(BuildContext context, String imagePath) {
+void showImageDialog(
+  BuildContext context,
+  String imagePath,
+  ProfileController controller,
+) {
   showDialog(
     context: context,
     builder: (context) => Dialog(
@@ -191,7 +205,9 @@ void showImageDialog(BuildContext context, String imagePath) {
         ),
         child: Stack(
           children: [
-            Positioned(top: 23,left: 85,
+            Positioned(
+              top: 23,
+              left: 85,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image.asset(
@@ -201,11 +217,15 @@ void showImageDialog(BuildContext context, String imagePath) {
                 ),
               ),
             ),
-            Positioned(top: 125,left:3 ,
+            Positioned(
+              top: 125,
+              left: 3,
               child: SizedBox(
                 width: 252.w,
                 height: 32.h,
                 child: TextFormField(
+                  controller: controller.usernameController,
+                  validator: (String? value) => customValidator(value, context),
                   style: TextStyle(color: ThemeManager.darkGrey),
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
@@ -227,13 +247,16 @@ void showImageDialog(BuildContext context, String imagePath) {
                 ),
               ),
             ),
-            Positioned(top:180 ,left:3 ,
-              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Positioned(
+              top: 180,
+              left: 3,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
                     onTap: () {
-                    Navigator.pop(context);
-                      },
+                      Navigator.pop(context);
+                    },
                     child: Container(
                       height: 32,
                       width: 116,
@@ -249,10 +272,14 @@ void showImageDialog(BuildContext context, String imagePath) {
                       ),
                     ),
                   ),
-                  SizedBox(width: 12,),
+                  SizedBox(width: 12),
                   GestureDetector(
-                    onTap: () {
-                      showImageDialog(context, Assets.images.noprofile.path);
+                    onTap: () async {
+                      Navigator.pop(context);
+                      await LocalStorage.setString(
+                        StorageKeys.userName,
+                        controller.usernameController.text,
+                      );
                     },
                     child: Container(
                       height: 32,
@@ -269,11 +296,19 @@ void showImageDialog(BuildContext context, String imagePath) {
                       ),
                     ),
                   ),
-
                 ],
               ),
             ),
-Positioned(top:68 ,left:150 ,child: SvgPicture.asset(Assets.svgs.camera,color: ThemeManager.secondaryColor,height:24.h ,width:24.w ,))
+            Positioned(
+              top: 68,
+              left: 150,
+              child: SvgPicture.asset(
+                Assets.svgs.camera,
+                color: ThemeManager.secondaryColor,
+                height: 24.h,
+                width: 24.w,
+              ),
+            ),
           ],
         ),
       ),
